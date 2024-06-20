@@ -19,6 +19,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/rgb.h>
+#include <behaviors.dtsi>
 
 /* Automatically generated layer name #define */
 #define LAYER_Base 0
@@ -264,7 +265,25 @@
 
 /* Custom Defined Behaviors */
 / {
+    behaviors {
+        hm: homerow_mods {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+    };
 
+    keymap {
+        compatible = "zmk,keymap";
+        default_layer {
+            bindings = <
+                &hm LCTRL A &hm LGUI S &hm LALT D &hm LSHIFT F
+            >;
+        };
+    };
 };
 
 /* Automatically generated macro definitions */
